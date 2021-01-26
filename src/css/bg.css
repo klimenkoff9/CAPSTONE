@@ -1,0 +1,51 @@
+.middle-align {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.middle-align h1,
+.middle-align h2,
+.middle-align h3 {
+  color: white;
+  filter: drop-shadow(-1px 2px 3px #1d1d1d);
+}
+
+.middle-align h1 {
+  font-size: 3rem;
+}
+.middle-align h3 {
+  font-size: 1.2rem;
+}
+
+.half-bg-about {
+  background-image: url(../images/bg/about.jpg);
+}
+
+.half-bg-homepage {
+  background-image: url(../images/bg/homepage.jpg);
+}
+
+.half-bg-login {
+  background-image: url(../images/bg/login.jpg);
+}
+
+.half-bg-signup {
+  background-image: url(../images/bg/signup.jpg);
+}
+
+.half-bg-search {
+  background-image: url(../images/bg/search.jpg);
+}
+
+.half-bg {
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 60vh;
+}

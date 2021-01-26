@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Castoro&family=Lato&display=swap');
 
+:root {
+  --bc-red: #6d1e39;
+  --bc-yellow: #fad129;
+}
+
 .content {
   padding: 20px 15px;
 }
@@ -22,7 +27,7 @@
 }
 
 .navbar .logo a:hover {
-  color: #33a3e9;
+  color: var(--bc-red);
 }
 
 .navbar .links {
@@ -42,7 +47,7 @@
 }
 
 .navbar .links a:hover {
-  background-color: #048ade;
+  background-color: var(--bc-red);
   color: #f0f0f0;
 }
 
