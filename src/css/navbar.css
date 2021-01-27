@@ -1,10 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Castoro&family=Lato&display=swap');
 
-:root {
-  --bc-red: #6d1e39;
-  --bc-yellow: #fad129;
-}
-
 .content {
   padding: 20px 15px;
 }

@@ -1,11 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-/**************************\
- * Colors:
- *
- * BC-RED: #6d1e39
- * BC-Yellow: #fad129
-\**************************/
+:root {
+  --bc-red: #6d1e39;
+  --bc-yellow: #fad129;
+}
 
 * {
   margin: 0;
