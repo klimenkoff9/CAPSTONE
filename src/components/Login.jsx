@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import HalfHeaderBG from './HalfHeaderBG'
 import { Link } from 'react-router-dom'
 
 import '../css/login.css'

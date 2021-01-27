@@ -20,7 +20,7 @@
 }
 
 .form-container {
-  background-color: #6d1e3ade;
+  background-color: #6d1e3ac8;
   padding: 20px 40px;
   border-radius: 5px;
 }
@@ -94,4 +94,9 @@
 
 .text {
   margin-top: 30px;
+}
+
+.error-msg {
+  color: var(--bc-yellow);
+  margin-bottom: 20px;
 }
