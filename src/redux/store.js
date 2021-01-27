@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 // Individual reducers altogether under an alias;
-import rootReducer from './root-reducer';
+import rootReducer from './reducers/index';
 
 // Construct our Redux store;
 const logger = createLogger({ collapsed: true });

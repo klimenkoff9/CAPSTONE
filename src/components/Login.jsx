@@ -4,6 +4,14 @@ import { Link } from 'react-router-dom'
 import '../css/login.css'
 
 export default class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: ""
+    }
+  }
+
   render() {
     return (
       <div className='bg-login'>
@@ -29,7 +37,7 @@ export default class Login extends Component {
                 Login
               </button>
               <p className='text'>
-                Don't have an account? <Link to='/signup'>Signup</Link>
+                Don't have an account? <Link to='/signup'>Sign Up</Link>
               </p>
             </form>
           </div>
