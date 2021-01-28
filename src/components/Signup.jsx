@@ -40,7 +40,7 @@ class SignUp extends Component {
       ...this.state,
       disabled: true
     })
-    this.props.userSignUp(userCredentials);
+    this.props.userSignUp(userCredentials, "signup");
   };
 
   render() {
@@ -134,7 +134,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log("Map dispatching to props..");
   return {
-    userSignUp: (credentials) => dispatch(userSignUp(credentials)),
+    userSignUp: (credentials, method) => dispatch(userSignUp(credentials, method)),
   };
 };
 

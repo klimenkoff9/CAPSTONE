@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 import '../css/navbar.css'
+import { connect } from "react-redux";
+import { logout } from "../redux/reducers/index";
+class Navbar extends Component {
 
-export default class Navbar extends Component {
   render() {
     return (
       <div className='navbar'>
@@ -15,8 +17,22 @@ export default class Navbar extends Component {
           <Link to='/login'>Login</Link>
           <Link to='/signup'>Sign Up</Link>
           <Link to='/search'>Search</Link>
+          <Link to ="/" onClick={this.props.handleClick}>Log Out</Link>
         </div>
       </div>
     )
   }
 }
+
+
+const mapDispatchToProps = (dispatch) => {
+  console.log("Map dispatching to props..");
+  return {
+    // me: () => dispatch(me()),
+    handleClick() {
+      dispatch(logout());
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Navbar)

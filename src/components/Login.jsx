@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { userLogIn } from "../redux/reducers/index";
+import { auth } from "../redux/reducers/index";
 
 import "../css/login.css";
 class Login extends Component {
@@ -35,7 +35,7 @@ class Login extends Component {
       ...this.state,
       disabled: true
     })
-    this.props.userLogIn(userCredentials);
+    this.props.auth(userCredentials, "login");
   };
 
   render() {
@@ -102,7 +102,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log("Map dispatching to props..");
   return {
-    userLogIn: (credentials) => dispatch(userLogIn(credentials)),
+    auth: (credentials, login) => dispatch(auth(credentials, login))
   };
 };
 
