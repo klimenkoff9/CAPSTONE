@@ -24,13 +24,13 @@ const userSignedUp = (payload) => ({
 })
 
 // Thunks
-
+// returns response
 export const userLogIn = (loginCredentials) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`http://localhost:8080/api/user/login`, loginCredentials);
-            console.log(response);
-            dispatch(userLoggedIn(response));
+            const { data } = await axios.post(`http://localhost:8080/api/user/login`, loginCredentials);
+            console.log(data);
+            dispatch(userLoggedIn(data));
         } catch (error) {
             console.error(error);
         }
@@ -40,9 +40,9 @@ export const userLogIn = (loginCredentials) => {
 export const userSignUp = (signupCredentials) => {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`http://localhost:8080/api/user/signup`, signupCredentials);
-            console.log(response);
-            // dispatch(userSignedUp(resposne));
+            const { data } = await axios.post(`http://localhost:8080/api/user/signup`, signupCredentials);
+            console.log(data);
+            // dispatch(userSignedUp(data));
         } catch (error) {
             console.error(error);
         }

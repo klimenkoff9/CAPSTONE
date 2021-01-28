@@ -12,36 +12,38 @@ export default class Signup extends Component {
     super(props)
 
     this.state = {
-      fullName: '',
       email: '',
       password: '',
       passwordConfirm: '',
-      message: '',
+      disabled: false
     }
 
     this.handleSignup = this.handleSignup.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
-  handleSignup = () => {
-    let message = ''
-    if (!confirmPassword(this.state.password, this.state.passwordConfirm))
-      message = 'Passwords do not match.'
-
-    if (!validatePassword(this.state.password))
-      message = 'Password: 8 chars, 1 letter, 1 number'
-
-    if (!validateEmail(this.state.email)) message = 'That is not a valid email.'
-
-    if (this.state.fullName.trim() === '')
-      message = 'You must enter your full name.'
-
-    this.setState({ message: message })
-  }
-
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value })
-  }
+    console.log(e.target.name);
+    console.log(e.target.value);
+    this.setState({
+    [e.target.name]: e.target.value
+    })
+    console.log(this.state.email);
+  };
+
+  handleSubmit = async (e) => {
+    e.preventDefault();
+    let userCredentials = {
+      email: this.state.email,
+      password: this.state.password,
+    };
+    console.log(userCredentials)
+    this.setState({
+      ...this.state,
+      disabled: true
+    })
+    this.props.userLogIn(userCredentials);
+  };
 
   render() {
     return (
