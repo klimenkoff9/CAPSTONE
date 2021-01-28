@@ -43,7 +43,7 @@ class Login extends Component {
       <div className="bg-login">
         <div className="login-container">
           <div className="form-container">
-            <h1>Please Login</h1>
+            <h1>Login</h1>
             <form onSubmit={this.handleSubmit}>
               {/* input fields */}
               <div className="form-control">

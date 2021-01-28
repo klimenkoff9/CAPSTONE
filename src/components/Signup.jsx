@@ -1,34 +1,31 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import validateEmail from '../helper/validateEmail'
-import validatePassword from '../helper/validatePassword'
-import confirmPassword from '../helper/confirmPassword'
+// import validateEmail from '../helper/validateEmail'
+// import validatePassword from '../helper/validatePassword'
+// import confirmPassword from '../helper/confirmPassword'
+
+import { userSignUp } from "../redux/reducers/index";
+import { connect } from "react-redux";
 
 import '../css/login.css'
 
-export default class Signup extends Component {
-  constructor(props) {
-    super(props)
-
+class SignUp extends Component {
+  constructor() {
+    super()
     this.state = {
       email: '',
       password: '',
       passwordConfirm: '',
       disabled: false
     }
-
-    this.handleSignup = this.handleSignup.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
     this.setState({
     [e.target.name]: e.target.value
     })
-    console.log(this.state.email);
+    console.log(this.state.passwordConfirm);
   };
 
   handleSubmit = async (e) => {
@@ -36,13 +33,14 @@ export default class Signup extends Component {
     let userCredentials = {
       email: this.state.email,
       password: this.state.password,
+      passwordConfirm: this.state.passwordConfirm
     };
     console.log(userCredentials)
     this.setState({
       ...this.state,
       disabled: true
     })
-    this.props.userLogIn(userCredentials);
+    this.props.userSignUp(userCredentials);
   };
 
   render() {
@@ -51,9 +49,11 @@ export default class Signup extends Component {
         <div className='bg-signup'>
           <div className='login-container'>
             <div className='form-container'>
-              <h1>Please Signup</h1>
-              <form>
-                <div className='form-control'>
+              <h1>Sign Up</h1>
+              <form onSubmit = {this.handleSubmit}>
+              
+                {// Removed because as a user who's leaving a bad review on my professor I wanna be anonymous  
+                  /* <div className='form-control'>
                   <input
                     onChange={this.handleChange}
                     name='fullName'
@@ -63,36 +63,40 @@ export default class Signup extends Component {
                   <label>
                     <span>Full Name</span>
                   </label>
-                </div>
-                <div className='form-control'>
-                  <input
-                    onChange={this.handleChange}
-                    name='email'
-                    type='text'
-                    required
-                  />
-                  <label>
-                    <span>Email</span>
-                  </label>
-                </div>
+                </div> */}
+                {/* input fields */}
+
+              <div className="form-control">
+                <input
+                  name="email"
+                  type="email"
+                  onChange={this.handleChange}
+                  // placeholder="Email"
+                  required
+                />
+                <label>
+                  <span>Email</span>
+                </label>
+              </div>
+
+              <div className="form-control">
+                <input
+                  name="password"
+                  type="password"
+                  onChange={this.handleChange}
+                  // placeholder="Password"
+                  required
+                />
+                <label>
+                  <span>Password</span>
+                </label>
+              </div>
 
                 <div className='form-control'>
                   <input
-                    onChange={this.handleChange}
-                    name='password'
-                    type='password'
-                    required
-                  />
-                  <label>
-                    <span>Password</span>
-                  </label>
-                </div>
-
-                <div className='form-control'>
-                  <input
-                    onChange={this.handleChange}
                     name='passwordConfirm'
                     type='password'
+                    onChange={this.handleChange}
                     required
                   />
                   <label>
@@ -100,14 +104,13 @@ export default class Signup extends Component {
                   </label>
                 </div>
 
-                <p className='text error-msg'>{this.state.message}</p>
+                <p className='text error-msg'>{this.props.signUpResponse}</p>
 
                 <button
-                  type='button'
+                  type='submit'
                   className='btn'
-                  onClick={this.handleSignup}
                 >
-                  Signup
+                  Sign Up
                 </button>
                 <p className='text'>
                   Already have an account? <Link to='/login'>Login</Link>
@@ -120,3 +123,19 @@ export default class Signup extends Component {
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  console.log("Map state to props..");
+  return {
+    signUpResponse: state.signUpResponse,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  console.log("Map dispatching to props..");
+  return {
+    userSignUp: (credentials) => dispatch(userSignUp(credentials)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -24,6 +24,7 @@ const userSignedUp = (payload) => ({
 })
 
 // Thunks
+
 // returns response
 export const userLogIn = (loginCredentials) => {
     return async (dispatch) => {
@@ -37,12 +38,14 @@ export const userLogIn = (loginCredentials) => {
     }
 }
 
+// returns response
 export const userSignUp = (signupCredentials) => {
+    console.log(signupCredentials);
     return async (dispatch) => {
         try {
             const { data } = await axios.post(`http://localhost:8080/api/user/signup`, signupCredentials);
             console.log(data);
-            // dispatch(userSignedUp(data));
+            dispatch(userSignedUp(data));
         } catch (error) {
             console.error(error);
         }
