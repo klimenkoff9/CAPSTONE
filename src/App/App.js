@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
+import history from "../history"
 import { connect } from "react-redux";
 import { me } from "../redux/reducers/index";
 
@@ -10,6 +11,7 @@ import Login from '../components/Login'
 import Signup from '../components/Signup'
 import Search from '../components/Search'
 import About from '../components/About'
+
 
 class App extends Component {
 
@@ -22,7 +24,7 @@ class App extends Component {
 
     return (
       <div className='app'>
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename={process.env.PUBLIC_URL} history={history}>
           <Navbar isLoggedIn = {isLoggedIn} />
 
           <Switch>

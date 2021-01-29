@@ -41,32 +41,6 @@ const logoutUser = (payload) => ({
 
 // Thunks
 
-// returns response
-// export const userLogIn = (loginCredentials) => {
-//     return async (dispatch) => {
-//         try {
-//             const { data } = await axios.post(`http://localhost:8080/auth/login`, loginCredentials);
-//             console.log(data);
-//             dispatch(userLoggedIn(data));
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     }
-// }
-
-// // returns response
-// export const userSignUp = (signupCredentials) => {
-//     console.log(signupCredentials);
-//     return async (dispatch) => {
-//         try {
-//             const { data } = await axios.post(`http://localhost:8080/auth/signup`, signupCredentials);
-//             console.log(data);
-//             dispatch(userSignedUp(data));
-//         } catch (error) {
-//             console.error(error);
-//         }
-//     }
-// }
 
 export const me = () => {
     return async (dispatch) => {
@@ -82,7 +56,7 @@ export const me = () => {
     }
 }
 
-export const logout = () => {
+export const logout = (props) => {
     return async (dispatch) => {
         try {
             axios.post('http://localhost:8080/auth/logout');
@@ -117,7 +91,7 @@ export const auth = (credentials, method) => {
                     dispatch(userSignedUp(response.data));
                 }
             } else {
-                dispatch(getUser(response.data));
+                await dispatch(getUser(response.data));
                 history.push('/');
             }
         } catch (error) {

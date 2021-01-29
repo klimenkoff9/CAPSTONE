@@ -36,7 +36,6 @@ class Login extends Component {
       disabled: true
     })
     await this.props.auth(userCredentials, "login");
-    
   };
 
   render() {

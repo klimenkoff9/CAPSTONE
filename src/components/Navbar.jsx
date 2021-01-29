@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
 import "../css/navbar.css";
 import { connect } from "react-redux";
 import { logout } from "../redux/reducers/index";
@@ -38,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Navbar);
+export default withRouter(connect(null, mapDispatchToProps)(Navbar));
