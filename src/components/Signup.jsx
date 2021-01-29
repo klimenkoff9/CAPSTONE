@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // import validatePassword from '../helper/validatePassword'
 // import confirmPassword from '../helper/confirmPassword'
 
-import { userSignUp } from "../redux/reducers/index";
+import { auth } from "../redux/reducers/index";
 import { connect } from "react-redux";
 
 import '../css/login.css'
@@ -40,7 +40,7 @@ class SignUp extends Component {
       ...this.state,
       disabled: true
     })
-    this.props.userSignUp(userCredentials, "signup");
+    this.props.auth(userCredentials, "signup");
   };
 
   render() {
@@ -134,7 +134,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   console.log("Map dispatching to props..");
   return {
-    userSignUp: (credentials, method) => dispatch(userSignUp(credentials, method)),
+    auth: (credentials, method) => dispatch(auth(credentials, method)),
   };
 };
 

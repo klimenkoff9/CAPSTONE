@@ -23,20 +23,25 @@ class App extends Component {
     return (
       <div className='app'>
         <Router basename={process.env.PUBLIC_URL}>
-          <Navbar />
+          <Navbar isLoggedIn = {isLoggedIn} />
+
           <Switch>
-            <Route exact path='/' component={Homepage} />
-            {/* <Route exact path='/about' component={About} /> */}
+          <Route exact path='/' component={Homepage} />\
+
+          { !isLoggedIn && (
+          <Switch>
             <Route exact path='/login' component={Login} />
             <Route exact path='/signup' component={Signup} />
-            <Route exact path='/search' component={Search} />
+          </Switch>
+          )}
 
-            {isLoggedIn && (
-              <Switch>
-              <Route exact path='/about' component={About} />
-              </Switch>
-            )}
-            
+          {isLoggedIn && (
+          <Switch>
+            <Route exact path='/search' component={Search} />
+            <Route exact path='/about' component={About} />
+          </Switch>
+          )}
+          
           </Switch>
         </Router>
       </div>

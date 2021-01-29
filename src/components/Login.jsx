@@ -35,7 +35,8 @@ class Login extends Component {
       ...this.state,
       disabled: true
     })
-    this.props.auth(userCredentials, "login");
+    await this.props.auth(userCredentials, "login");
+    
   };
 
   render() {
@@ -72,18 +73,14 @@ class Login extends Component {
                 </label>
               </div>
 
+              <p className='text error-msg'>{this.props.logInResponse}</p>
+
               <button type="submit" className="btn">
                 Login
               </button>
               <p className="text">
                 Don't have an account? <Link to="/signup">Sign Up</Link>
               </p>
-              {/* Approval/Rejection alert */}
-              <div className="alertMessage">
-                { this.state.disabled ?
-                  (alert(this.props.logInResponse)) : (console.log("Not today buddy"))
-                }
-              </div>
             </form>
           </div>
         </div>
