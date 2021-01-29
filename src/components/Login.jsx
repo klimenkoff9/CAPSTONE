@@ -35,7 +35,7 @@ class Login extends Component {
       ...this.state,
       disabled: true
     })
-    await this.props.auth(userCredentials, "login");
+    await this.props.auth(this.state.email, this.state.password, "login");
   };
 
   render() {

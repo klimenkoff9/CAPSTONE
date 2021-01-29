@@ -14,8 +14,9 @@ import {
 const initialState = {
     logInResponse: "",
     signUpResponse: "",
-    defaultUser: {}
 }
+
+const defaultUser = {};
 
 // Action Creators
 
@@ -47,33 +48,23 @@ export const me = () => {
         try {
             const {
                 data
-            } = await axios.post(`http://localhost:8080/auth/me`);
+            } = await axios.get(`http://localhost:8080/auth/me`);
             console.log(data);
-            dispatch(getUser(data || this.defaultUser));
+            dispatch(getUser(data || defaultUser));
         } catch (error) {
             console.error(error);
         }
     }
 }
 
-export const logout = (props) => {
-    return async (dispatch) => {
-        try {
-            axios.post('http://localhost:8080/auth/logout');
-            dispatch(logoutUser({}))
-            history.push('/')
-        } catch (error) {
-            console.error(error);
-        }
-    }
-}
-
-export const auth = (credentials, method) => {
+export const auth = (email, password, method = "login") => {
     console.log(method);
     return async (dispatch) => {
         let response;
         try {
-            response = await axios.post(`http://localhost:8080/auth/${method}`, credentials);
+            response = await axios.post(`http://localhost:8080/auth/${method}`, {
+                email, password
+            });
             console.log(typeof response.data);
         } catch (authError) {
             return dispatch(getUser({
@@ -99,32 +90,59 @@ export const auth = (credentials, method) => {
         }
     }
 }
+
+export const logout = () => {
+    return async (dispatch) => {
+        try {
+            axios.post('http://localhost:8080/auth/logout');
+            dispatch(logoutUser({}))
+            history.push('/')
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
 // Root Reducer
 
-const rootReducer = (state = initialState, action) => {
-    console.log("REDUCER IS PROCESSING DISPATCHED ACTION");
-    console.log("state", state);
-    console.log("action", action);
-    switch (action.type) {
-        case USER_SIGN_UP:
-            return {
-                ...state, signUpResponse: action.payload
-            };
-        case USER_LOG_IN:
-            return {
-                ...state, logInResponse: action.payload
-            };
-        case GET_USER:
-            return {
-                ...state, defaultUser: action.payload
-            };
-        case USER_LOG_OUT:
-            return {
-                ...state, defaultUser: action.payload
-            }
-            default:
-                return state;
-    }
-};
+// const rootReducer = (state = initialState, action) => {
+//     console.log("REDUCER IS PROCESSING DISPATCHED ACTION");
+//     console.log("state", state);
+//     console.log("action", action);
+//     switch (action.type) {
+//         case USER_SIGN_UP:
+//             return {
+//                 ...state, signUpResponse: action.payload
+//             };
+//         case USER_LOG_IN:
+//             return {
+//                 ...state, logInResponse: action.payload
+//             };
+//         case GET_USER:
+//             return {
+//                 ...state, defaultUser: action.payload
+//             };
+//         case USER_LOG_OUT:
+//             return {
+//                 ...state, defaultUser: action.payload
+//             }
+//             default:
+//                 return state;
+//     }
+// };
 
-export default rootReducer;
+const userReducer = (state = defaultUser, action) => {
+    console.log(state);
+    switch (action.type) {
+        case GET_USER: 
+            return action.payload;
+        case USER_LOG_OUT: 
+            return defaultUser;
+        default: 
+            return state; 
+    }
+}
+ 
+
+export default userReducer;
+

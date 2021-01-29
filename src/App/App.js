@@ -53,9 +53,9 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   console.log("Map state to props..");
-  console.log(!!state.defaultUser.id);
+  console.log(state.userReducer);
   return {
-    isLoggedIn: !!state.defaultUser.id // might need to change
+    isLoggedIn: !!state.userReducer.id // might need to change
   };
 };
 
