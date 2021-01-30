@@ -17,7 +17,8 @@ const initialState = {
     logInResponse: "",
     signUpResponse: "",
     defaultUser: {},
-    classInfo: {}
+    classInfo: {},
+    classReviews: []
 }
 
 
@@ -45,6 +46,11 @@ const logoutUser = (payload) => ({
 
 const gotClassInfo = (payload) => ({
     type: GET_CLASS_INFO,
+    payload
+})
+
+const gotClassReviews = (payload) => ({
+    type: GET_CLASS_REVIEWS,
     payload
 })
 
@@ -127,6 +133,20 @@ export const getClassInfo = (id) => {
     }
 }
 
+export const getClassReviews = (id) => {
+    console.log(id);
+    return async (dispatch) => {
+    console.log("Hi");
+        try {
+            let { data } = await axios.get(`http://localhost:8080/api/review/${id}`)
+            console.log(data);
+            dispatch(gotClassReviews(data));
+        } catch (error) {
+         console.error(error);   
+        }
+    }
+}
+
 // Root Reducer
 
 const rootReducer = (state = initialState, action) => {
@@ -153,6 +173,10 @@ const rootReducer = (state = initialState, action) => {
         case GET_CLASS_INFO:
             return {
                 ...state, classInfo: action.payload
+            }
+        case GET_CLASS_REVIEWS:
+            return {
+                ...state, classReviews: action.payload
             }
             default:
                 return state;

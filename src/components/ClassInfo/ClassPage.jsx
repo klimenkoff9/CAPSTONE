@@ -1,6 +1,8 @@
 import React from "react";
 
 import ClassInfo from "./components/ClassInfo";
+import Reviews from "./components/Reviews";
+
 const ClassPage = ( props ) => {
 
   const { match: { params: { id } } } = props; 
@@ -10,6 +12,7 @@ const ClassPage = ( props ) => {
     <div className="Class">
       <article>
         <ClassInfo id={id} />
+        <Reviews id={id} />
       </article>
     </div>
   );
