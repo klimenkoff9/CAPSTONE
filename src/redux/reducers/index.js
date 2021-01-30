@@ -6,7 +6,9 @@ import {
     USER_LOG_IN,
     USER_SIGN_UP,
     GET_USER,
-    USER_LOG_OUT
+    USER_LOG_OUT,
+    GET_CLASS_INFO,
+    GET_CLASS_REVIEWS
 } from "./actionTypes";
 
 
@@ -14,9 +16,10 @@ import {
 const initialState = {
     logInResponse: "",
     signUpResponse: "",
+    defaultUser: {},
+    classInfo: {}
 }
 
-const defaultUser = {};
 
 // Action Creators
 
@@ -40,9 +43,14 @@ const logoutUser = (payload) => ({
     payload
 })
 
+const gotClassInfo = (payload) => ({
+    type: GET_CLASS_INFO,
+    payload
+})
+
 // Thunks
 
-
+// AUTH 
 export const me = () => {
     return async (dispatch) => {
         try {
@@ -50,7 +58,7 @@ export const me = () => {
                 data
             } = await axios.get(`http://localhost:8080/auth/me`);
             console.log(data);
-            dispatch(getUser(data || defaultUser));
+            dispatch(getUser(data || initialState.defaultUser));
         } catch (error) {
             console.error(error);
         }
@@ -103,46 +111,54 @@ export const logout = () => {
     }
 }
 
-// Root Reducer
+// SEARCH FOR CLASSES
 
-// const rootReducer = (state = initialState, action) => {
-//     console.log("REDUCER IS PROCESSING DISPATCHED ACTION");
-//     console.log("state", state);
-//     console.log("action", action);
-//     switch (action.type) {
-//         case USER_SIGN_UP:
-//             return {
-//                 ...state, signUpResponse: action.payload
-//             };
-//         case USER_LOG_IN:
-//             return {
-//                 ...state, logInResponse: action.payload
-//             };
-//         case GET_USER:
-//             return {
-//                 ...state, defaultUser: action.payload
-//             };
-//         case USER_LOG_OUT:
-//             return {
-//                 ...state, defaultUser: action.payload
-//             }
-//             default:
-//                 return state;
-//     }
-// };
-
-const userReducer = (state = defaultUser, action) => {
-    console.log(state);
-    switch (action.type) {
-        case GET_USER: 
-            return action.payload;
-        case USER_LOG_OUT: 
-            return defaultUser;
-        default: 
-            return state; 
+export const getClassInfo = (id) => {
+    console.log(id);
+    return async (dispatch) => {
+    console.log("Hi");
+        try {
+            let { data } = await axios.get(`http://localhost:8080/api/search/class/${id}`)
+            console.log(data);
+            dispatch(gotClassInfo(data));
+        } catch (error) {
+         console.error(error);   
+        }
     }
 }
- 
 
-export default userReducer;
+// Root Reducer
+
+const rootReducer = (state = initialState, action) => {
+    console.log("REDUCER IS PROCESSING DISPATCHED ACTION");
+    console.log("state", state);
+    console.log("action", action);
+    switch (action.type) {
+        case USER_SIGN_UP:
+            return {
+                ...state, signUpResponse: action.payload
+            };
+        case USER_LOG_IN:
+            return {
+                ...state, logInResponse: action.payload
+            };
+        case GET_USER:
+            return {
+                ...state, defaultUser: action.payload
+            };
+        case USER_LOG_OUT:
+            return {
+                ...state, defaultUser: action.payload
+            }
+        case GET_CLASS_INFO:
+            return {
+                ...state, classInfo: action.payload
+            }
+            default:
+                return state;
+    }
+};
+
+
+export default rootReducer;
 
