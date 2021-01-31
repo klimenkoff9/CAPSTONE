@@ -1,44 +1,52 @@
-import React from "react";
-import { connect } from "react-redux";
-import { getClassInfo } from "../../../redux/reducers/index";
+import React from 'react'
+import { connect } from 'react-redux'
+import { getClassInfo } from '../../../redux/reducers/index'
+
+import HalfHeaderBG from '../../HalfHeaderBG'
 
 class CampusInfo extends React.Component {
-
   async componentDidMount() {
     try {
-        await this.props.getClassInfo(this.props.id);
+      await this.props.getClassInfo(this.props.id)
     } catch (error) {
-        console.error(error);
-    };
-  };
+      console.error(error)
+    }
+  }
 
   render() {
-      const {classDescription, 
+    const {
+      classDescription,
       className,
       classNumber,
-      facultyName
-        } = this.props.classInfo;
-      console.log(this.props.classInfo);
+      facultyName,
+    } = this.props.classInfo
+    console.log(this.props.classInfo)
+
+    const h1 = facultyName
+    const h3 = `${className} ${classNumber}: ${classDescription}`
+
     return (
-    <div>
-        <h1>{className} {classNumber}: {classDescription} </h1>
-        <h2>{facultyName}</h2>
-    </div>);
+      <HalfHeaderBG
+        title={h1}
+        description={h3}
+        imgdiv='half-bg half-bg-search'
+      />
+    )
   }
 }
 
 const mapStateToProps = (state) => {
-  console.log("Map state to props..");
+  console.log('Map state to props..')
   return {
     classInfo: state.classInfo,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
-  console.log("Map dispatching to props..");
+  console.log('Map dispatching to props..')
   return {
     getClassInfo: (id) => dispatch(getClassInfo(id)),
-  };
-};
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(CampusInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(CampusInfo)

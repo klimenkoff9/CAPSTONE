@@ -92,5 +92,10 @@
 }
 
 .section-link {
+  color: rgb(0, 33, 228);
   text-decoration: none;
+}
+
+.section-link:visited {
+  color: rgb(0, 33, 228);
 }

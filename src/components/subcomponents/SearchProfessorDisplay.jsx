@@ -17,7 +17,7 @@ export default class SearchProfessorDisplay extends Component {
       links.push(
         <SearchClassLink
           title={`${taughtClass[0]} ${taughtClass[1]}`}
-          link={`/section/${taughtClass[2]}`}
+          link={`/class/${taughtClass[2]}`}
         />
       )
     }
