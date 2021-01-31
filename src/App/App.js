@@ -11,25 +11,30 @@ import Login from '../components/Login'
 import Signup from '../components/Signup'
 import Search from '../components/Search'
 import About from '../components/About'
+import ClassPage from "../components/ClassInfo/ClassPage";
+import AddNewReview from "../components/ClassInfo/components/AddNewReview";
 
 
 class App extends Component {
 
   async componentDidMount() {
     await this.props.loadInitialData();
+    console.log(this.props.loadInitialData.isLoggedIn);
   }
 
   render() {
     const { isLoggedIn } = this.props;
-
+    console.log(this.props.loadInitialData.isLoggedIn);
     return (
       <div className='app'>
         <Router basename={process.env.PUBLIC_URL} history={history}>
           <Navbar isLoggedIn = {isLoggedIn} />
 
           <Switch>
-          <Route exact path='/' component={Homepage} />\
-
+          <Route exact path ='/' component={Homepage} />\
+          <Route exact path ='/class/:id' component={ClassPage} />
+          <Route exact path ='/class/:id/newreview' component={AddNewReview} />
+            
           { !isLoggedIn && (
           <Switch>
             <Route exact path='/login' component={Login} />
@@ -53,7 +58,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   console.log("Map state to props..");
-  console.log(!!state.defaultUser.id);
+  console.log(state.defaultUser.id);
   return {
     isLoggedIn: !!state.defaultUser.id // might need to change
   };

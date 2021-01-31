@@ -6,7 +6,10 @@ import {
     USER_LOG_IN,
     USER_SIGN_UP,
     GET_USER,
-    USER_LOG_OUT
+    USER_LOG_OUT,
+    GET_CLASS_INFO,
+    GET_CLASS_REVIEWS,
+    ADD_NEW_REVIEW
 } from "./actionTypes";
 
 
@@ -14,8 +17,12 @@ import {
 const initialState = {
     logInResponse: "",
     signUpResponse: "",
-    defaultUser: {}
+    defaultUser: {},
+    classInfo: {},
+    classReviews: [],
+    newReviewMSG: ""
 }
+
 
 // Action Creators
 
@@ -39,41 +46,46 @@ const logoutUser = (payload) => ({
     payload
 })
 
+const gotClassInfo = (payload) => ({
+    type: GET_CLASS_INFO,
+    payload
+})
+
+const gotClassReviews = (payload) => ({
+    type: GET_CLASS_REVIEWS,
+    payload
+})
+
+const addNewReviewMessage = (payload) => ({
+    type: ADD_NEW_REVIEW,
+    payload
+})
+
 // Thunks
 
-
+// AUTH 
 export const me = () => {
     return async (dispatch) => {
         try {
             const {
                 data
-            } = await axios.post(`http://localhost:8080/auth/me`);
+            } = await axios.get(`http://localhost:8080/auth/me`);
             console.log(data);
-            dispatch(getUser(data || this.defaultUser));
+            dispatch(getUser(data || initialState.defaultUser));
         } catch (error) {
             console.error(error);
         }
     }
 }
 
-export const logout = (props) => {
-    return async (dispatch) => {
-        try {
-            axios.post('http://localhost:8080/auth/logout');
-            dispatch(logoutUser({}))
-            history.push('/')
-        } catch (error) {
-            console.error(error);
-        }
-    }
-}
-
-export const auth = (credentials, method) => {
+export const auth = (email, password, method = "login") => {
     console.log(method);
     return async (dispatch) => {
         let response;
         try {
-            response = await axios.post(`http://localhost:8080/auth/${method}`, credentials);
+            response = await axios.post(`http://localhost:8080/auth/${method}`, {
+                email, password
+            });
             console.log(typeof response.data);
         } catch (authError) {
             return dispatch(getUser({
@@ -99,6 +111,60 @@ export const auth = (credentials, method) => {
         }
     }
 }
+
+export const logout = () => {
+    return async (dispatch) => {
+        try {
+            axios.post('http://localhost:8080/auth/logout');
+            dispatch(logoutUser({}))
+            history.push('/')
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
+// SEARCH FOR CLASSES
+
+export const getClassInfo = (id) => {
+    console.log(id);
+    return async (dispatch) => {
+    console.log("Hi");
+        try {
+            let { data } = await axios.get(`http://localhost:8080/api/search/class/${id}`)
+            console.log(data);
+            dispatch(gotClassInfo(data));
+        } catch (error) {
+         console.error(error);   
+        }
+    }
+}
+
+export const getClassReviews = (id) => {
+    console.log(id);
+    return async (dispatch) => {
+    console.log("Hi");
+        try {
+            let { data } = await axios.get(`http://localhost:8080/api/review/${id}`)
+            console.log(data);
+            dispatch(gotClassReviews(data));
+        } catch (error) {
+         console.error(error);   
+        }
+    }
+}
+
+export const addNewReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.post("http://localhost:8080/api/review/new", review);
+            dispatch(addNewReviewMessage(data));
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
 // Root Reducer
 
 const rootReducer = (state = initialState, action) => {
@@ -122,9 +188,23 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state, defaultUser: action.payload
             }
+        case GET_CLASS_INFO:
+            return {
+                ...state, classInfo: action.payload
+            }
+        case GET_CLASS_REVIEWS:
+            return {
+                ...state, classReviews: action.payload
+            }
+        case ADD_NEW_REVIEW: 
+            return {
+                ...state, newReviewMSG: action.payload
+            }
             default:
                 return state;
     }
 };
 
+
 export default rootReducer;
+
