@@ -28,17 +28,18 @@
 }
 
 .review-container {
-  margin: 20px 30px;
+  margin: 40px 30px;
   padding: 20px 60px;
-  background-color: #ecf0f1;
-  color: #333;
+  background-color: rgb(160, 63, 97);
+  color: white;
 }
 
 .split-column {
   display: flex;
   flex-direction: row;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: #ffffff;
+  color: black;
+  min-height: 40vh;
 }
 
 .split-column-1 {
@@ -61,14 +62,14 @@
 
 .file-box {
   color: black;
-  background-color: #cbebf4;
+  background-color: #f4c611;
   margin: 20px;
-  padding: 10px;
+  padding: 30px 20px;
 }
 
 .file-box a {
   text-decoration: none;
-  color: rgb(61, 13, 157);
+  color: black;
 }
 
 .larger-text {
@@ -81,6 +82,10 @@
 
 .left {
   text-align: start;
+}
+
+.some-margin {
+  margin: 20px 20px;
 }
 
 @media (max-width: 700px) {

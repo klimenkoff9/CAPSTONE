@@ -22,8 +22,8 @@ class App extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
-    // const isLoggedIn = true
+    // const { isLoggedIn } = this.props
+    const isLoggedIn = true
 
     console.log(this.props.loadInitialData.isLoggedIn)
     return (

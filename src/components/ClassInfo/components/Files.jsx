@@ -42,7 +42,9 @@ class Files extends React.Component {
                   )
                 })
               ) : (
-                <h1>No files found. Be the first one!</h1>
+                <p className='larger-text some-margin'>
+                  No files found. Be the first one!
+                </p>
               )}
             </div>
           </div>

@@ -35,7 +35,9 @@ class Reviews extends React.Component {
             )
           })
         ) : (
-          <h1>No reviews found. Be the first one!</h1>
+          <p className='larger-text some-margin'>
+            No reviews found. Be the first one!
+          </p>
         )}
       </div>
     )
