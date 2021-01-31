@@ -30,14 +30,14 @@
 .review-container {
   margin: 20px 30px;
   padding: 20px 60px;
-  background-color: var(--bc-yellow);
+  background-color: #ecf0f1;
   color: #333;
 }
 
 .split-column {
   display: flex;
   flex-direction: row;
-  background-color: rgb(34, 34, 34);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
 }
 
@@ -61,7 +61,7 @@
 
 .file-box {
   color: black;
-  background-color: #ecf0f1;
+  background-color: #cbebf4;
   margin: 20px;
   padding: 10px;
 }
@@ -92,12 +92,4 @@
   .split-column-2 {
     width: 100vw;
   }
-
-  /* .file-box {
-    margin-left: 5px;
-  }
-
-  .review-container {
-    margin-left: 15px;
-  } */
 }

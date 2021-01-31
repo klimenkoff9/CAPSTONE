@@ -1,33 +1,33 @@
-import React from "react";
+import React from 'react'
 
-import ClassInfo from "./components/ClassInfo";
-import Reviews from "./components/Reviews";
+import ClassInfo from './components/ClassInfo'
+import Reviews from './components/Reviews'
 
-import Files from "./components/Files";
+import Files from './components/Files'
 
-import "../../css/classpage.css";
+import '../../css/classpage.css'
 
 const ClassPage = (props) => {
   const {
     match: {
       params: { id },
     },
-  } = props;
+  } = props
 
-  console.log(id);
+  console.log(id)
   return (
-    <div className="Class">
+    <div className='Class'>
       <ClassInfo id={id} />
-      <div className="split-column">
-        <div className="split-column-1">
+      <div className='split-column'>
+        <div className='split-column-1'>
           <Files id={id} />
         </div>
-      </div>
-      <div className="split-column-2">
-        <Reviews id={id} />
+        <div className='split-column-2'>
+          <Reviews id={id} />
+        </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ClassPage;
+export default ClassPage
