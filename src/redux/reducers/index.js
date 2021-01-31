@@ -9,7 +9,9 @@ import {
     USER_LOG_OUT,
     GET_CLASS_INFO,
     GET_CLASS_REVIEWS,
-    ADD_NEW_REVIEW
+    ADD_NEW_REVIEW,
+    ADD_NEW_FILE,
+    GET_ALL_FILES
 } from "./actionTypes";
 
 
@@ -20,7 +22,9 @@ const initialState = {
     defaultUser: {},
     classInfo: {},
     classReviews: [],
-    newReviewMSG: ""
+    newReviewMSG: "",
+    newFileMSG: ",",
+    allClassFiles: []
 }
 
 
@@ -58,6 +62,16 @@ const gotClassReviews = (payload) => ({
 
 const addNewReviewMessage = (payload) => ({
     type: ADD_NEW_REVIEW,
+    payload
+})
+
+const addNewFileMessage = (payload) => ({
+    type: ADD_NEW_FILE,
+    payload
+})
+
+const gotAllFiles = (payload) => ({
+    type: GET_ALL_FILES,
     payload
 })
 
@@ -165,6 +179,31 @@ export const addNewReview = (review) => {
     }
 }
 
+export const getClassFiles = (id) => {
+    console.log(id);
+    return async (dispatch) => {
+    console.log("Hi");
+        try {
+            let { data } = await axios.get(`http://localhost:8080/api/file/${id}`)
+            console.log(data);
+            dispatch(gotAllFiles(data));
+        } catch (error) {
+         console.error(error);   
+        }
+    }
+}
+
+export const addNewFile = (file) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.post("http://localhost:8080/api/file/", file);
+            dispatch(addNewFileMessage(data));
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
 // Root Reducer
 
 const rootReducer = (state = initialState, action) => {
@@ -200,8 +239,16 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state, newReviewMSG: action.payload
             }
-            default:
-                return state;
+        case ADD_NEW_FILE:
+            return {
+                ...state, newFileMSG: action.payload
+            }
+        case GET_ALL_FILES:
+            return {
+                ...state, allClassFiles: action.payload
+            }
+        default:
+            return state;
     }
 };
 
