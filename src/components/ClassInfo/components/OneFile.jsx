@@ -10,7 +10,7 @@ class OneFile extends Component {
           <strong>Description:</strong> {this.props.description}
         </p>
         <br />
-        <a href={this.props.url}>Link to File</a>
+        <a href={this.props.url} target="_blank">Link to File</a>
       </div>
     )
   }

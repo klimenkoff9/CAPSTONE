@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { auth } from "../redux/reducers/index";
@@ -35,7 +35,10 @@ class Login extends Component {
       ...this.state,
       disabled: true
     })
-    await this.props.auth(this.state.email, this.state.password, "login");
+    await this.props.auth(userCredentials, "login");
+    if(this.props.logInResponse === "Signed up successfully!") {
+    this.props.history.push("/");
+    }
   };
 
   render() {
@@ -102,4 +105,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

@@ -10,7 +10,7 @@ class AddNewReview extends Component {
     super();
     this.state = {
       reviewText: "",
-      rating: 0,
+      rating: 5,
       takeAgain: null,
       textbook: null,
       syllabus: null,
