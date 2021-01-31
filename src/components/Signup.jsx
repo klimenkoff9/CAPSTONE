@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 // import validateEmail from '../helper/validateEmail'
 // import validatePassword from '../helper/validatePassword'
@@ -41,6 +41,10 @@ class SignUp extends Component {
       disabled: true
     })
     this.props.auth(userCredentials, "signup");
+
+    if(this.props.signUpResponse === "") {
+      this.props.history.push("/");
+      }
   };
 
   render() {
@@ -138,4 +142,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp));
