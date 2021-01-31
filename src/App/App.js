@@ -13,6 +13,7 @@ import Search from '../components/Search'
 import About from '../components/About'
 import ClassPage from "../components/ClassInfo/ClassPage";
 import AddNewReview from "../components/ClassInfo/components/AddNewReview";
+import AddNewFile from "../components/ClassInfo/components/AddNewFile";
 
 
 class App extends Component {
@@ -34,7 +35,8 @@ class App extends Component {
           <Route exact path ='/' component={Homepage} />\
           <Route exact path ='/class/:id' component={ClassPage} />
           <Route exact path ='/class/:id/newreview' component={AddNewReview} />
-            
+          <Route exact path ='/class/:id/newfile' component={AddNewFile} />
+
           { !isLoggedIn && (
           <Switch>
             <Route exact path='/login' component={Login} />
