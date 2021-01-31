@@ -30,20 +30,14 @@ export default class Search extends Component {
       [e.target.name]: e.target.value,
     })
 
-    // uncomment/comment out below line to enable/disable automatic search
-    // without having to press 'Enter'
-    this.handleSearch()
+    /* uncomment/comment out below line to enable/disable automatic search
+     * without having to press 'Enter'
+     */
+    // this.handleSearch()
   }
 
   handleSearch = () => {
     const query = this.state.searchQuery
-
-    let hasNumber = stringMatcher.hasNumber(query)
-
-    // if (hasNumber) this.searchByClass(query)
-    // else if (query.length >= 4) this.searchByClass(query)
-    // else this.searchByFaculty(query)
-
     this.searchByFaculty(query)
   }
 
@@ -142,7 +136,7 @@ export default class Search extends Component {
             return (
               <SearchProfessorDisplay
                 professorName={prof['value'][0].facultyName}
-                rating='9.7'
+                rating='4.7'
                 classesTaught={classSections}
               />
             )
