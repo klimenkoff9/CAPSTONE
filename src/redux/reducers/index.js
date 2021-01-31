@@ -8,7 +8,8 @@ import {
     GET_USER,
     USER_LOG_OUT,
     GET_CLASS_INFO,
-    GET_CLASS_REVIEWS
+    GET_CLASS_REVIEWS,
+    ADD_NEW_REVIEW
 } from "./actionTypes";
 
 
@@ -18,7 +19,8 @@ const initialState = {
     signUpResponse: "",
     defaultUser: {},
     classInfo: {},
-    classReviews: []
+    classReviews: [],
+    newReviewMSG: ""
 }
 
 
@@ -51,6 +53,11 @@ const gotClassInfo = (payload) => ({
 
 const gotClassReviews = (payload) => ({
     type: GET_CLASS_REVIEWS,
+    payload
+})
+
+const addNewReviewMessage = (payload) => ({
+    type: ADD_NEW_REVIEW,
     payload
 })
 
@@ -147,6 +154,17 @@ export const getClassReviews = (id) => {
     }
 }
 
+export const addNewReview = (review) => {
+    return async (dispatch) => {
+        try {
+            const {data} = await axios.post("http://localhost:8080/api/review/new", review);
+            dispatch(addNewReviewMessage(data));
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
+
 // Root Reducer
 
 const rootReducer = (state = initialState, action) => {
@@ -177,6 +195,10 @@ const rootReducer = (state = initialState, action) => {
         case GET_CLASS_REVIEWS:
             return {
                 ...state, classReviews: action.payload
+            }
+        case ADD_NEW_REVIEW: 
+            return {
+                ...state, newReviewMSG: action.payload
             }
             default:
                 return state;

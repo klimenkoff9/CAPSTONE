@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getClassReviews } from "../../../redux/reducers/index";
+import { Link } from "react-router-dom";
 
 import OneReview from "./OneReview";
 
@@ -17,6 +18,7 @@ class Reviews extends React.Component {
     console.log(this.props.classReviews);
     return (
       <div>
+      <Link to={`/class/${this.props.id}/newreview`}><button className="btn btn-primary btn-outline-danger">Add Review</button></Link>
         {this.props.classReviews.length ? this.props.classReviews.map((review, index) => {
           return (
             <OneReview
