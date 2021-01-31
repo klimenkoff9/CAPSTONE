@@ -21,7 +21,6 @@ class Navbar extends Component {
               Log Out
             </Link>
           )}
-          {!this.props.isLoggedIn && <Link to="/class/3">Class</Link>}
         </div>
       </div>
     );

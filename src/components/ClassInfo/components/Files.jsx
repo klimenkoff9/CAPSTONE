@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 
 import OneFile from "./OneFile";
 
+import "../../../css/classpage.css"
+
 class Files extends React.Component {
   async componentDidMount() {
     try {
