@@ -5,8 +5,8 @@ import { connect } from 'react-redux'
 import { logout } from '../redux/reducers/index'
 class Navbar extends Component {
   render() {
-    // const { isLoggedIn } = this.props
-    const isLoggedIn = true
+    const { isLoggedIn } = this.props
+    // const isLoggedIn = true
     return (
       <div className='navbar'>
         <div className='links'>

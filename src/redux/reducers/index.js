@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../../history'
+
 import backend from '../../helper/backend'
 
 // Action Types
@@ -89,15 +90,12 @@ export const me = () => {
   }
 }
 
-export const auth = (email, password, method = 'login') => {
+export const auth = (credentials, method) => {
   console.log(method)
   return async (dispatch) => {
     let response
     try {
-      response = await axios.post(`${backend}/auth/${method}`, {
-        email,
-        password,
-      })
+      response = await axios.post(`${backend}/auth/${method}`, credentials)
       console.log(typeof response.data)
     } catch (authError) {
       return dispatch(
@@ -113,7 +111,10 @@ export const auth = (email, password, method = 'login') => {
         if (method === 'login') {
           console.log(response.data)
           dispatch(userLoggedIn(response.data))
-        } else if (method === 'signup') {
+        } else if (
+          method === 'signup' &&
+          response.data !== 'Signed up successfully!'
+        ) {
           dispatch(userSignedUp(response.data))
         }
       } else {
