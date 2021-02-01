@@ -40,10 +40,9 @@ class SignUp extends Component {
       ...this.state,
       disabled: true
     })
-    this.props.auth(userCredentials, "signup");
-
-    if(this.props.signUpResponse === "") {
-      this.props.history.push("/");
+    await this.props.auth(userCredentials, "signup");
+    if (this.props.signUpResponse === "") {
+      this.props.history.push("/search");
       }
   };
 
