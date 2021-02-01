@@ -45,7 +45,7 @@ class App extends Component {
             {isLoggedIn && (
               <Switch>
                 <Route exact path='/search' component={Search} />
-                <Route exact path='/about' component={About} />
+                {/* <Route exact path='/about' component={About} /> */}
               </Switch>
             )}
           </Switch>

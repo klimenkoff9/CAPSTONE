@@ -14,7 +14,7 @@ class Navbar extends Component {
             <div className='logo'>
               <Link to='/'>ClassMate</Link>
             </div>
-            <Link to='/about'>About</Link>
+            {/* <Link to='/about'>About</Link> */}
             {isLoggedIn && <Link to='/search'>Search</Link>}
           </div>
           <div className='links-col-2'>
