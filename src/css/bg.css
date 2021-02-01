@@ -27,10 +27,6 @@
   background-image: url(../images/bg/about.jpg);
 }
 
-.half-bg-homepage {
-  background-image: url(../images/bg/homepage.jpg);
-}
-
 .half-bg-login {
   background-image: url(../images/bg/login.jpg);
 }
@@ -56,4 +52,21 @@
 
 .bg-signup {
   background-image: url(../images/bg/signup.jpg);
+}
+
+.full-bg {
+  display: flex;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 100vh;
+}
+
+.bg-homepage {
+  background-image: url(../images/bg/homepage.jpg);
+}
+
+.tint {
+  background-color: #00000080;
+  height: 100%;
+  width: 100%;
 }

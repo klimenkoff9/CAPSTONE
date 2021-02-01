@@ -12,7 +12,7 @@ class Navbar extends Component {
         <div className='links'>
           <div className='links-col-1'>
             <div className='logo'>
-              <Link to='/'>Capstone Project</Link>
+              <Link to='/'>ClassMate</Link>
             </div>
             <Link to='/about'>About</Link>
             {isLoggedIn && <Link to='/search'>Search</Link>}

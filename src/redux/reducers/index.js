@@ -130,7 +130,7 @@ export const auth = (credentials, method) => {
 export const logout = () => {
   return async (dispatch) => {
     try {
-      axios.post('${backend}/auth/logout')
+      axios.post(`${backend}/auth/logout`)
       dispatch(logoutUser({}))
       history.push('/')
     } catch (error) {
@@ -172,7 +172,7 @@ export const getClassReviews = (id) => {
 export const addNewReview = (review) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post('${backend}/api/review/new', review)
+      const { data } = await axios.post(`${backend}/api/review/new`, review)
       dispatch(addNewReviewMessage(data))
     } catch (error) {
       console.error(error)
@@ -197,7 +197,7 @@ export const getClassFiles = (id) => {
 export const addNewFile = (file) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post('${backend}/api/file/', file)
+      const { data } = await axios.post(`${backend}/api/file/`, file)
       dispatch(addNewFileMessage(data))
     } catch (error) {
       console.error(error)
