@@ -3,7 +3,9 @@
 <!-- IMPORTANT LINKS -->
 
 Website Page: https://ttp-capstone-frontend-lima.netlify.app/
+
 Demo Day Slides: https://docs.google.com/presentation/d/1316Tbpgok7nzHdrwkYb-l0fQHbOeDUixWKWjmqXTXnE/edit#slide=id.gba373ccc28_2_0
+
 App logic chart: https://drive.google.com/file/d/1P5M1tmLnZoFPNpwPREjQw4OD5xDe-7mN/view
 
 Backend: https://github.com/klimenkoff9/CAPSTONE-backend
