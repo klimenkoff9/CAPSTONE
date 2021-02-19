@@ -32,5 +32,5 @@ Distributed under the ISC License.
 
 ## Contact
 
-Dennis Klimenkov - [@klimenkoff9](https://twitter.com/DennisKlimenkov) - dennis.klimenkov9@gmail.com
+Dennis Klimenkov - [@klimenkoff9](https://www.linkedin.com/in/dennis-klimenkov/) - dennis.klimenkov9@gmail.com
 Mohammed J. Hossain - jahedev@gmail.com
