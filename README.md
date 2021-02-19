@@ -1,4 +1,4 @@
-<h1 align="center">CAPSTONE: Class Mate</h1>
+<h1 align="center">CAPSTONE PROJECT: Class Mate</h1>
   
 <!-- IMPORTANT LINKS -->
 
